@@ -1,3 +1,4 @@
+import { useFilters } from '../hooks/useFilters';
 import '../styles/products.css'
 import { AddToCartIcon } from './Icons'
 
@@ -25,15 +26,16 @@ function List({ items }) {
     </ul>
   )
 }
-export function Products({ products }) {
-  const hasProducts = products?.length > 0
+export function Products() {
+  const { filteredProducts } = useFilters();
+  const hasProducts = filteredProducts?.length > 0
   return (
     <main>
 
       <div className='products'>
         {
           hasProducts
-            ? <List items={products} />
+            ? <List items={filteredProducts} />
             : <p>There are no productos available</p>
         }
       </div>

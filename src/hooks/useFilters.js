@@ -1,11 +1,10 @@
-import { useState, useCallback } from 'react'
+import { useCallback, useContext } from 'react'
+import { FiltersContext } from '../context/filtersContext';
+import json from '../mocks/products.json'
 
-
-export const useFilters = (products) => {
-  const [filters, setFilters] = useState({
-    category: 'all',
-    minPrice: 0
-  });
+export const useFilters = () => {
+  
+  const { filters, setFilters } = useContext(FiltersContext);
 
   //APRENDEEEEERRR!!
   const filteredProducts = useCallback((products) => {
@@ -16,7 +15,7 @@ export const useFilters = (products) => {
   }, [filters])
 
   return {
-    filteredProducts: filteredProducts(products),
+    filteredProducts: filteredProducts(json.products),
     setFilters,
     filters
   }

@@ -17,21 +17,20 @@
 
 
 */
-import json from './mocks/products.json'
-import { useState } from 'react'
+
+
 import { Products, Header, Footer } from './components'
-import { useFilters } from './hooks/useFilters'
+
 
 export function App() {
 
-  const [products] = useState(json.products);
-  const { filteredProducts, setFilters, filters } = useFilters(products)
 
   return (
     <div className='page'>
-      <Header onChangeFilters={setFilters} />
-      <Products products={filteredProducts} />
-      <Footer currentFilters={filters} />
+      <Header />
+      <Products />
+      <Footer />
+
     </div>
   )
 }
