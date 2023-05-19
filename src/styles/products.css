@@ -40,3 +40,9 @@
   object-fit: cover;
   background: #fff;
 }
+
+.item-btn-set{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}

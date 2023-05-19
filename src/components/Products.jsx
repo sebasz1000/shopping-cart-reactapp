@@ -1,12 +1,26 @@
-import { useFilters } from '../hooks/useFilters';
+import { useFilters, useCart } from '../hooks';
 import '../styles/products.css'
-import { AddToCartIcon } from './Icons'
+import { AddToCartIcon, RemoveFromCartIcon } from './Icons'
 
 function List({ items }) {
+
+  const { checkProductInCart, removeProductFromCart, addToCart } = useCart()
+
+  const getBtnSet = (item) => {
+    return checkProductInCart(item)
+      ? (<button onClick={() => removeProductFromCart(item)} style={{ backgroundColor: 'red' }}>
+        <RemoveFromCartIcon />
+      </button>)
+      : (<button onClick={() => addToCart(item)} style={{ backgroundColor: 'green' }}>
+        <AddToCartIcon />
+      </button>)
+  }
+
   return (
     <ul >
       {
-        items.slice(0, 10).map(({ title, id, thumbnail, price }) => {
+        items.slice(0, 10).map((item) => {
+          const { title, id, thumbnail, price } = item
           return (
             <li key={id}>
               <img src={thumbnail}
@@ -15,10 +29,8 @@ function List({ items }) {
               <div>
                 <h3>{title} - ${price}</h3>
               </div>
-              <div>
-                <button>
-                  <AddToCartIcon />
-                </button>
+              <div className='item-btn-set'>
+                {getBtnSet(item)}
               </div>
             </li>)
         })

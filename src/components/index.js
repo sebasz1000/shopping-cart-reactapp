@@ -1,5 +1,5 @@
-export * from './Header'
+export * from './Cart'
 export * from './Filters'
-export * from './Products'
 export * from './Footer'
-
+export * from './Header'
+export * from './Products'

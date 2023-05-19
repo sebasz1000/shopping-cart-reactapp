@@ -12,7 +12,10 @@ export function FiltersContextProvider({ children }) {
   //const { filteredProducts, setFilters, filters } = useFilters(products)
 
   return (
-    <FiltersContext.Provider value={{ filters, setFilters }}>
+    <FiltersContext.Provider value={{
+      filters,
+      setFilters
+    }}>
       {children}
     </FiltersContext.Provider>
 

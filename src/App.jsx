@@ -19,7 +19,7 @@
 */
 
 
-import { Products, Header, Footer } from './components'
+import { Products, Header, Footer, Cart } from './components'
 
 
 export function App() {
@@ -28,9 +28,9 @@ export function App() {
   return (
     <div className='page'>
       <Header />
+      <Cart />
       <Products />
       <Footer />
-
     </div>
   )
 }

@@ -1,5 +1,5 @@
 import { useCallback, useContext } from 'react'
-import { FiltersContext } from '../context/filtersContext';
+import { FiltersContext } from '../context';
 import json from '../mocks/products.json'
 
 export const useFilters = () => {
