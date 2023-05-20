@@ -4,10 +4,8 @@ import { useId, useEffect, useRef } from "react";
 import { useCart } from '../hooks';
 import { AddToCartIcon, ClearCartIcon, RemoveFromCartIcon, CartIcon } from "./Icons";
 
-function CartItem({ item }) {
+function CartItem({ item, addToCart }) {
   const { thumbnail, title, price, quantity } = item
-  const { addToCart } = useCart()
-
   return (
     <li>
       <img src={thumbnail} alt={title} />
@@ -20,7 +18,7 @@ function CartItem({ item }) {
         <small>
           {quantity}
         </small>
-        <button onClick={() => addToCart(item)}>
+        <button onClick={addToCart}>
           +
         </button>
       </footer>
@@ -30,7 +28,7 @@ function CartItem({ item }) {
 
 export function Cart() {
   const cartCheckboxId = useId()
-  const { cart, clearCart, setShowCart, showCart } = useCart()
+  const { cart, clearCart, setShowCart, showCart, addToCart } = useCart()
   const isFirstTime = useRef(true)
 
   useEffect(() => {
@@ -56,7 +54,11 @@ export function Cart() {
       <aside className="cart">
         <ul>
           {
-            cart.map(item => <CartItem item={item} key={item.id} />)
+            cart.map(item =>
+              <CartItem item={item}
+                key={item.id}
+                addToCart={() => addToCart(item)} />
+            )
           }
         </ul>
         <button onClick={() => clearCart()}>
