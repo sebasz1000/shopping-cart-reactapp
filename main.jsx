@@ -6,8 +6,6 @@ import { FiltersContextProvider, CartContextProvider } from './src/context/'
 const root = createRoot(document.querySelector('#root'))
 root.render(
   <FiltersContextProvider >
-    <CartContextProvider>
-      <App />
-    </CartContextProvider>
+    <App />
   </FiltersContextProvider>
 )

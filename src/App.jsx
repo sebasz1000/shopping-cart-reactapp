@@ -20,6 +20,7 @@
 
 
 import { Products, Header, Footer, Cart } from './components'
+import { CartContextProvider } from './context'
 
 
 export function App() {
@@ -27,10 +28,12 @@ export function App() {
 
   return (
     <div className='page'>
-      <Header />
-      <Cart />
-      <Products />
-      <Footer />
+      <CartContextProvider>
+        <Header />
+        <Cart />
+        <Products />
+        <Footer />
+      </CartContextProvider>
     </div>
   )
 }

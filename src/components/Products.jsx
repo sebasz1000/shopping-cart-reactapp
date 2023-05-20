@@ -4,7 +4,7 @@ import { AddToCartIcon, RemoveFromCartIcon } from './Icons'
 
 function List({ items }) {
 
-  const { checkProductInCart, removeProductFromCart, addToCart } = useCart()
+  const { checkProductInCart, removeProductFromCart, addToCart, getQuantityProductInCart } = useCart()
 
   const getBtnSet = (item) => {
     return checkProductInCart(item)
@@ -16,13 +16,20 @@ function List({ items }) {
       </button>)
   }
 
+  const getQuantityBadge = (item) => {
+    return checkProductInCart(item)
+      ? <span className='item-quantity-badge'>{getQuantityProductInCart(item)}</span>
+      : null
+  }
+
   return (
     <ul >
       {
         items.slice(0, 10).map((item) => {
           const { title, id, thumbnail, price } = item
           return (
-            <li key={id}>
+            <li key={id} className='item'>
+              {getQuantityBadge(item)}
               <img src={thumbnail}
                 width="100%"
                 alt={title} />

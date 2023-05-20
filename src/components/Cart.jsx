@@ -4,7 +4,7 @@ import { useId, useEffect, useRef } from "react";
 import { useCart } from '../hooks';
 import { AddToCartIcon, ClearCartIcon, RemoveFromCartIcon, CartIcon } from "./Icons";
 
-function CartItem({ item, addToCart }) {
+function CartItem({ item, addToCart, minusFromCart }) {
   const { thumbnail, title, price, quantity } = item
   return (
     <li>
@@ -15,6 +15,9 @@ function CartItem({ item, addToCart }) {
         </strong> - ${price}
       </div>
       <footer>
+        <button onClick={minusFromCart}>
+          -
+        </button>
         <small>
           {quantity}
         </small>
@@ -28,9 +31,10 @@ function CartItem({ item, addToCart }) {
 
 export function Cart() {
   const cartCheckboxId = useId()
-  const { cart, clearCart, setShowCart, showCart, addToCart } = useCart()
+  const { cart, clearCart, setShowCart, showCart, addToCart, minusFromCart } = useCart()
   const isFirstTime = useRef(true)
 
+  //Show cart sidebar automatically on first time addToCart event
   useEffect(() => {
     const cartIsEmpty = cart.length === 0
     if (isFirstTime.current) {
@@ -57,7 +61,8 @@ export function Cart() {
             cart.map(item =>
               <CartItem item={item}
                 key={item.id}
-                addToCart={() => addToCart(item)} />
+                addToCart={() => addToCart(item)}
+                minusFromCart={() => minusFromCart(item)} />
             )
           }
         </ul>

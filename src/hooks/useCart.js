@@ -13,11 +13,28 @@ export const useCart = () => {
   
   const addToCart = (item) => setCart(prevState => getProductsWithQuantity(item, prevState))
   
-  const removeProductFromCart = (item) => {
-    setCart( prevStatus => prevStatus.filter( product => product.id !== item.id ))
+
+  const removeProductFromCart = (item) => setCart( prevState => prevState.filter( product => product.id !== item.id ))
+  
+    
+  const minusFromCart = (item) => setCart(prevState => {
+    const productInCartIndex = prevState.findIndex( product => product.id === item.id )
+    if(productInCartIndex < 0)
+      return
+    const newCart = structuredClone(prevState)
+    const product =  newCart[productInCartIndex]
+    if( product.quantity > 1){
+      product.quantity -= 1;  
+      return newCart
+    }else{
+      return prevState.filter( product => product.id !== item.id)
+    }
+  })
+  
+  const getQuantityProductInCart = (item) => {
+    const product = cart.find( product => product.id === item.id )
+    return product.quantity
   }
-  
-  
   const clearCart = () => setCart([])
   
   return{
@@ -28,6 +45,8 @@ export const useCart = () => {
     clearCart,
     checkProductInCart,
     addToCart,
-    removeProductFromCart
+    removeProductFromCart,
+    getQuantityProductInCart,
+    minusFromCart
   }
 }
