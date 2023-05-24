@@ -9,7 +9,7 @@ export const useFilters = () => {
   //APRENDEEEEERRR!!
   const filteredProducts = useCallback((products) => {
     return products.filter(product => {
-      return ((filters.category == 'all' || product.category === filters.category)
+      return ((filters.category === 'all' || product.category === filters.category)
         && product.price >= filters.minPrice)
     })
   }, [filters])

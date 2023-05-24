@@ -1,23 +1,32 @@
 import { useContext } from 'react'
 import  { CartContext } from '../context'
-import { getProductsWithQuantity } from '../helpers/getProductsWithQuantity';
+
+
 
 export const useCart = () => {
    const context = useContext(CartContext);
-   const {cart, setCart, showCart, setShowCart }  = context
-   
+   const { 
+      state,
+      addToCart,
+      removeProductFromCart,
+      minusFromCart,
+      clearCart,
+      showCart,
+      setShowCart 
+   }  = context
+
    if(context === undefined)
     throw new Error('useCart must be used within a CartProvider')
     
-  const checkProductInCart = (item) => cart.some( product => product.id === item.id )
+  const checkProductInCart = (item) => state.some( product => product.id === item.id )
   
-  const addToCart = (item) => setCart(prevState => getProductsWithQuantity(item, prevState))
+  //const addToCart = (item) => setCart(prevState => getProductsWithQuantity(item, prevState))
   
 
-  const removeProductFromCart = (item) => setCart( prevState => prevState.filter( product => product.id !== item.id ))
-  
+  //const removeProductFromCart = (item) => setCart( prevState => prevState.filter( product => product.id !== item.id ))
+
     
-  const minusFromCart = (item) => setCart(prevState => {
+  /*const minusFromCart = (item) => setCart(prevState => {
     const productInCartIndex = prevState.findIndex( product => product.id === item.id )
     if(productInCartIndex < 0)
       return
@@ -29,19 +38,20 @@ export const useCart = () => {
     }else{
       return prevState.filter( product => product.id !== item.id)
     }
-  })
+  }) */
   
   const getQuantityProductInCart = (item) => {
-    const product = cart.find( product => product.id === item.id )
+    const product = state.find( product => product.id === item.id )
     return product.quantity
   }
-  const clearCart = () => setCart([])
+  //const clearCart = () => setCart([])
+
   
   return{
-    cart,
+    cart: state,
     showCart,
     setShowCart,
-    setCart, 
+    //setCart, 
     clearCart,
     checkProductInCart,
     addToCart,
