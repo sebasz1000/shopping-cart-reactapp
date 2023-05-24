@@ -1,13 +1,13 @@
 import { getProductsWithQuantity } from '../helpers/getProductsWithQuantity';
-
+import { CART_ACTION_TYPES } from '../types/cart.types';
 
 export const cartReducer = (state, action) => {
   const { payload, type } = action
   switch (type) {
-    case 'ADD_TO_CART':
+    case CART_ACTION_TYPES.ADD_TO_CART:
       return getProductsWithQuantity(payload, state)
       break;
-    case 'MINUS_FROM_CART':
+    case CART_ACTION_TYPES.MINUS_FROM_CART:
       const productInCartIndex = state.findIndex(product => product.id === payload.id)
       if (productInCartIndex < 0)
         return state
@@ -20,12 +20,13 @@ export const cartReducer = (state, action) => {
         return state.filter(product => product.id !== payload.id)
       }
       break;
-    case 'REMOVE_FROM_CART':
+    case CART_ACTION_TYPES.REMOVE_FROM_CART:
       return state.filter(product => product.id !== payload.id)
       break
-    case 'CLEAR_CART':
+    case CART_ACTION_TYPES.CLEAR_CART:
       return []
     default:
+      return state
       break;
   }
   return state

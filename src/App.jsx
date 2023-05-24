@@ -1,19 +1,22 @@
 
+
 /*
+  From Midulive video:  https://www.youtube.com/watch?v=B9tDYAZZxcE&t=25s
+  
   1. Ecommerce
-  -  Show a product list from a JSON file
-  - Add a filter by category
-  - Add a filte by price
+    - Show a product list from a JSON file
+    - Add a filter by category
+    - Add a filte by price
   
   Use useContext to avoid passing unnecesary props
   
   2. Shopping Cart
   
-  - Make add products intro a car
-  - Make delete products from the car available
-  - Make modifying products quantity from the car available
-  - Syncronize car changes with the products list
-  - Save the car into localStorange to fetch this state on page reload
+    - Make add products intro a car
+    - Make delete products from the car available
+    - Make modifying products quantity from the car available
+    - Syncronize car changes with the products list
+    - Save the car into localStorange to fetch this state on page reload
 
 
 */
