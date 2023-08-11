@@ -55,7 +55,7 @@ export function Products() {
         {
           hasProducts
             ? <List items={filteredProducts} />
-            : <p>There are no productos available</p>
+            : <p>There are no productos available with these filters</p>
         }
       </div>
     </main>

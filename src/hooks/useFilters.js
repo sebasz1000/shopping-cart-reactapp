@@ -4,9 +4,15 @@ import json from '../mocks/products.json'
 
 export const useFilters = () => {
   
-  const { filters, setFilters } = useContext(FiltersContext);
-
-  //APRENDEEEEERRR!!
+  const context = useContext(FiltersContext);
+  
+  if(!context){
+    throw new Error('useFilters hook should be within a context Provider')
+  }
+  
+  const { filters, setFilters } = context
+  
+  // * IMPORTANT! Aprender filtro!!
   const filteredProducts = useCallback((products) => {
     return products.filter(product => {
       return ((filters.category === 'all' || product.category === filters.category)

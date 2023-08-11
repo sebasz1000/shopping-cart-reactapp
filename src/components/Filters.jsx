@@ -6,6 +6,8 @@ export function Filters() {
   const minPriceFilterId = useId()
   const categoryFilterId = useId()
 
+  const { minPrice, category } = filters
+
   const handleChange = ({ target }) => setFilters(prevState => ({ ...prevState, [target.name]: target.value }))
 
   return (
@@ -17,15 +19,15 @@ export function Filters() {
           min="0"
           max="1000"
           onChange={handleChange}
-          value={filters.minPrice}
+          value={minPrice}
           name="minPrice" />
-        <span>${filters.minPrice}</span>
+        <span>${minPrice}</span>
       </div>
       <div>
         <label htmlFor={categoryFilterId}>
           Category
         </label>
-        <select id={categoryFilterId} name="category" value={filters.category} onChange={handleChange}>
+        <select id={categoryFilterId} name="category" value={category} onChange={handleChange}>
           <option value="all">All</option>
           <option value="laptops">Laptops</option>
           <option value="smartphones">Smartphones</option>
